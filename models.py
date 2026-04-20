@@ -21,11 +21,6 @@ class CategoryType(Enum):
 #Category  (used via Composition inside Transaction)
 
 class Category:
-    """Represents a named category that belongs to a CategoryType.
-
-    Demonstrates **Encapsulation**: the internal _name and _type are
-    private; public access is only through read-only properties.
-    """
 
     def __init__(self, name: str, category_type: CategoryType) -> None:
         self._name: str = self._validate_name(name)
@@ -57,12 +52,6 @@ class Category:
 #Abstract base class  (Abstraction + foundation for Inheritance)
 
 class FinancialEntry(ABC):
-    """Abstract base class for any financial record.
-
-    Demonstrates **Abstraction**: forces every concrete subclass to
-    implement `describe()` and `entry_type`, hiding implementation details
-    behind a common interface.
-    """
 
     def __init__(self, amount: float, description: str, entry_date: date) -> None:
         self._id: str = str(uuid.uuid4())
@@ -74,15 +63,12 @@ class FinancialEntry(ABC):
     @property
     @abstractmethod
     def entry_type(self) -> str:
-        """Return a human-readable type label."""
 
     @abstractmethod
     def describe(self) -> str:
-        """Return a one-line human-readable summary."""
 
     @abstractmethod
     def to_dict(self) -> dict:
-        """Serialise to a plain dict for CSV/JSON persistence."""
 
     #encapsulated amount with validation
     @property
@@ -117,11 +103,6 @@ class FinancialEntry(ABC):
 #Concrete subclasses — Inheritance + Polymorphism
 
 class Transaction(FinancialEntry):
-    """A generic financial transaction that carries a Category.
-
-    Demonstrates **Composition**: a Transaction *has-a* Category object
-    (not inherits from it).
-    """
 
     def __init__(
         self,
@@ -142,7 +123,6 @@ class Transaction(FinancialEntry):
         return self._category.category_type.value
 
     def describe(self) -> str:
-        """Polymorphic description — overridden by Income/Expense."""
         sign = "+" if self.entry_type == "income" else "-"
         return (f"[{self._date}] {sign}{self._amount:.2f} € "
                 f"| {self._category.name} — {self._description}")
@@ -159,11 +139,6 @@ class Transaction(FinancialEntry):
 
 
 class Income(Transaction):
-    """An income transaction.
-
-    Demonstrates **Inheritance**: reuses all Transaction behaviour and
-    **Polymorphism**: overrides `entry_type` and `describe`.
-    """
 
     def __init__(
         self,
@@ -183,13 +158,8 @@ class Income(Transaction):
         return (f"[{self._date}] INCOME  +{self._amount:.2f} € "
                 f"| {self._category.name} — {self._description}")
 
-
 class Expense(Transaction):
-    """An expense transaction.
-
-    Demonstrates **Inheritance** and **Polymorphism** (same as Income).
-    """
-
+    
     def __init__(
         self,
         amount: float,
@@ -211,11 +181,6 @@ class Expense(Transaction):
 # Budget  (Aggregation: holds a list of Transactions, but doesn't own them)
 
 class Budget:
-    """Monthly budget limit for a specific category.
-
-    Demonstrates **Aggregation**: Budget references Category objects
-    but does not own/destroy them.
-    """
 
     def __init__(self, category: Category, limit: float) -> None:
         self._category: Category = category   # Aggregation
