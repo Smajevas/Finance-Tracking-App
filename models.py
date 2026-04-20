@@ -1,6 +1,4 @@
 """
-models.py — Core domain models for the Finance Tracker application.
-
 Demonstrates:
 - Encapsulation: private attributes with properties/setters
 - Abstraction: abstract base class FinancialEntry
@@ -14,19 +12,13 @@ from abc import ABC, abstractmethod
 from datetime import date
 from enum import Enum
 
-
-# ---------------------------------------------------------------------------
 # Enumerations
-# ---------------------------------------------------------------------------
 
 class CategoryType(Enum):
     INCOME = "income"
     EXPENSE = "expense"
 
-
-# ---------------------------------------------------------------------------
-# Category  (used via Composition inside Transaction)
-# ---------------------------------------------------------------------------
+#Category  (used via Composition inside Transaction)
 
 class Category:
     """Represents a named category that belongs to a CategoryType.
@@ -39,7 +31,7 @@ class Category:
         self._name: str = self._validate_name(name)
         self._type: CategoryType = category_type
 
-    # -- private helper --------------------------------------------------
+    #private helper
     @staticmethod
     def _validate_name(name: str) -> str:
         name = name.strip()
@@ -47,7 +39,7 @@ class Category:
             raise ValueError("Category name cannot be empty.")
         return name
 
-    # -- properties (read-only) ------------------------------------------
+    #properties (read-only)
     @property
     def name(self) -> str:
         return self._name
@@ -62,10 +54,7 @@ class Category:
     def to_dict(self) -> dict:
         return {"name": self._name, "type": self._type.value}
 
-
-# ---------------------------------------------------------------------------
-# Abstract base class  (Abstraction + foundation for Inheritance)
-# ---------------------------------------------------------------------------
+#Abstract base class  (Abstraction + foundation for Inheritance)
 
 class FinancialEntry(ABC):
     """Abstract base class for any financial record.
@@ -77,11 +66,11 @@ class FinancialEntry(ABC):
 
     def __init__(self, amount: float, description: str, entry_date: date) -> None:
         self._id: str = str(uuid.uuid4())
-        self.amount = amount          # uses setter for validation
+        self.amount = amount
         self._description: str = description
         self._date: date = entry_date
 
-    # -- abstract interface ----------------------------------------------
+    #abstract interface
     @property
     @abstractmethod
     def entry_type(self) -> str:
@@ -95,7 +84,7 @@ class FinancialEntry(ABC):
     def to_dict(self) -> dict:
         """Serialise to a plain dict for CSV/JSON persistence."""
 
-    # -- encapsulated amount with validation -----------------------------
+    #encapsulated amount with validation
     @property
     def amount(self) -> float:
         return self._amount
@@ -108,7 +97,7 @@ class FinancialEntry(ABC):
             raise ValueError("Amount must be a positive number.")
         self._amount = float(value)
 
-    # -- read-only properties -------------------------------------------
+    #read-only properties
     @property
     def id(self) -> str:
         return self._id
@@ -125,10 +114,7 @@ class FinancialEntry(ABC):
         return (f"{self.__class__.__name__}(id={self._id[:8]}…, "
                 f"amount={self._amount:.2f}, date={self._date})")
 
-
-# ---------------------------------------------------------------------------
-# Concrete subclasses — Inheritance + Polymorphism
-# ---------------------------------------------------------------------------
+#Concrete subclasses — Inheritance + Polymorphism
 
 class Transaction(FinancialEntry):
     """A generic financial transaction that carries a Category.
@@ -222,10 +208,7 @@ class Expense(Transaction):
         return (f"[{self._date}] EXPENSE -{self._amount:.2f} € "
                 f"| {self._category.name} — {self._description}")
 
-
-# ---------------------------------------------------------------------------
 # Budget  (Aggregation: holds a list of Transactions, but doesn't own them)
-# ---------------------------------------------------------------------------
 
 class Budget:
     """Monthly budget limit for a specific category.
