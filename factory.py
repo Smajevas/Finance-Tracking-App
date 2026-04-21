@@ -57,9 +57,7 @@ class ExpenseCreator(TransactionCreator):
         return Expense(amount, description, cat, entry_date)
 
 
-# ---------------------------------------------------------------------------
 # Convenience facade
-# ---------------------------------------------------------------------------
 
 class TransactionFactory:
 
