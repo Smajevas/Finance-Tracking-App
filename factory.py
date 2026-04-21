@@ -15,6 +15,7 @@ class TransactionCreator(ABC):
         category_name: str,
         entry_date: date | None = None,
     ) -> FinancialEntry:
+        pass
 
     def build(
         self,
