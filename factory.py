@@ -59,7 +59,7 @@ class ExpenseCreator(TransactionCreator):
 
 
 # ---------------------------------------------------------------------------
-# Convenience façade
+# Convenience facade
 # ---------------------------------------------------------------------------
 
 class TransactionFactory:
