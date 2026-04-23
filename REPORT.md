@@ -12,8 +12,7 @@
 2. Clone the repository and navigate to the project folder:
 
 ```bash
-git clone https://github.com/<your-username>/finance-tracker.git
-cd finance-tracker
+git clone https://github.com/Smajevas/Finance-Tracking-App
 ```
 
 3. Run the application:
