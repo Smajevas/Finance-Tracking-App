@@ -63,12 +63,15 @@ class FinancialEntry(ABC):
     @property
     @abstractmethod
     def entry_type(self) -> str:
+        pass
 
     @abstractmethod
     def describe(self) -> str:
+        pass
 
     @abstractmethod
     def to_dict(self) -> dict:
+        pass
 
     #encapsulated amount with validation
     @property
