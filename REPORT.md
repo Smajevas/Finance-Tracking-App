@@ -19,13 +19,13 @@ cd finance-tracker
 3. Run the application:
 
 ```bash
-python main.py
+py main.py
 ```
 
 4. Run the tests:
 
 ```bash
-python -m unittest test_finance_tracker -v
+py -m unittest test_finance_tracker -v
 ```
 
 No third-party packages are required — only the Python standard library.
