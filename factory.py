@@ -1,7 +1,13 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import date
-from models import Category, CategoryType, FinancialEntry, Income, Expense, Transaction
+
+from category import Category, CategoryType
+from financial_entry import FinancialEntry
+from income import Income
+from expense import Expense
+from transaction import Transaction
+
 
 # Abstract creator
 
