@@ -28,11 +28,13 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 import storage as storage_module
 from factory import TransactionFactory, IncomeCreator, ExpenseCreator
-from models import (
-    Budget, Category, CategoryType, Expense, FinancialEntry, Income, Transaction,
-)
+from category import Category, CategoryType
+from financial_entry import FinancialEntry
+from income import Income
+from expense import Expense
+from transaction import Transaction
+from budget import Budget
 from tracker import FinanceTracker
-
 
 # Category tests
 
