@@ -1,9 +1,12 @@
 from __future__ import annotations
 import logging
 from datetime import date
-from typing import Optional
 
-from models import Budget, Category, CategoryType, FinancialEntry, Income, Expense
+from budget import Budget
+from category import Category, CategoryType
+from financial_entry import FinancialEntry
+from income import Income
+from expense import Expense
 from factory import TransactionFactory
 import storage
 
