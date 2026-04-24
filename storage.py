@@ -4,7 +4,9 @@ import logging
 import os
 from pathlib import Path
 
-from models import Budget, Category, CategoryType, FinancialEntry
+from budget import Budget
+from category import Category, CategoryType
+from financial_entry import FinancialEntry
 from factory import TransactionFactory
 
 logger = logging.getLogger(__name__)
