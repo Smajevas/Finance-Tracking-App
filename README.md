@@ -35,8 +35,8 @@ py -m unittest test_finance_tracker -v
 ## OOP Pillars Demonstrated
 
 1. Encapsulation
+   Private attribute, only accessible through a property
 ```python
-# private attribute, only accessible through a property
 
 self._name: str = self._validate_name(name)
 
@@ -44,7 +44,7 @@ self._name: str = self._validate_name(name)
 def name(self) -> str:
     return self._name
 ```
-The `amount` attribute also uses a setter that rejects invalid values:
+The `amount` attribute also uses a setter that rejects invalid values
 ```python
 @amount.setter
 def amount(self, value: float) -> None:
@@ -56,9 +56,8 @@ def amount(self, value: float) -> None:
 ```
 ---
 2. Abstraction
-Hiding complex implementation details behind a simple interface using an abstract base class.
+Forces subclasses to implement methods
 ```python
-from abc import ABC, abstractmethod
 
 class FinancialEntry(ABC):
 
@@ -77,7 +76,7 @@ class FinancialEntry(ABC):
 `FinancialEntry` cannot be created directly — it forces every subclass to implement `describe()`, `entry_type`, and `to_dict()`.
 ---
 3. Inheritance
-A class reusing and extending the behaviour of a parent class.
+Income and Expense inherit from Transaction
 ```python
 # Full inheritance chain:
 # FinancialEntry (ABC) -> Transaction -> Income
@@ -88,7 +87,6 @@ class Income(Transaction):
         cat = category or Category("General Income", CategoryType.INCOME)
         super().__init__(amount, description, cat, entry_date)  # calls Transaction.__init__
 ```
-`Income` and `Expense` both inherit all attributes and logic from `Transaction`, which itself inherits from `FinancialEntry`.
 ---
 4. Polymorphism
 The same method name behaves differently depending on which class it belongs to.
