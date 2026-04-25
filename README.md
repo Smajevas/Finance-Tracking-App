@@ -35,12 +35,11 @@ py -m unittest test_finance_tracker -v
 ## OOP Pillars Demonstrated
 
 1. Encapsulation
-Bundling data inside a class and restricting direct access using private attributes and properties.
 ```python
-# _name is private — cannot be changed from outside the class
+# private attribute, only accessible through a property
+
 self._name: str = self._validate_name(name)
 
-# Only accessible through a read-only property
 @property
 def name(self) -> str:
     return self._name
