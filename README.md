@@ -72,8 +72,9 @@ class FinancialEntry(ABC):
     @abstractmethod
     def to_dict(self) -> dict:
         pass
-```
+
 `FinancialEntry` cannot be created directly — it forces every subclass to implement `describe()`, `entry_type`, and `to_dict()`.
+```
 ---
 3. Inheritance
 Income and Expense inherit from Transaction
