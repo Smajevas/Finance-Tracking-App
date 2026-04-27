@@ -8,17 +8,22 @@ composition/aggregation, CSV file I/O, and unit testing.
 ```
 finance_tracker/
 ├── main.py                  # CLI entry point & menu
-├── models.py                # Domain models (Category, Transaction, Income, Expense, Budget)
+├── category.py              # Category class + CategoryType
+├── financial_entry.py       # Abstract base class
+├── transaction.py           # Transaction class
+├── income.py                # Income class
+├── expense.py               # Expense class
+├── budget.py                # Budget class
 ├── factory.py               # Factory Method design pattern
-├── tracker.py               # FinanceTracker service class
+├── tracker.py               # Main application logic
 ├── storage.py               # CSV read/write persistence
-├── test_finance_tracker.py  # 48 unit tests (unittest)
-├── REPORT.md                # Coursework report
+├── test_finance_tracker.py  # 48 unit tests
 └── data/                    # Created at runtime
     ├── transactions.csv
     ├── budgets.csv
     └── summary.txt
 ```
+
 ## How to Run
 
 py main.py
