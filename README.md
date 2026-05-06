@@ -32,6 +32,10 @@ py main.py
 
 py -m unittest test_finance_tracker -v
 
+## How to create data folder
+
+mkdir data
+
 ## Requirements
 
 - Python 3.10+
